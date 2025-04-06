@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "550035801604",
+    "project_id": "raghad-class",
+    "storage_bucket": "raghad-class.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550035801604:android:658a7a320e1d4014d75751",
+        "android_client_info": {
+          "package_name": "com.example.firebase_notifications"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2ANrE9E_DXDfA1XedAQu3dg7xAksNQsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
