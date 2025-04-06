@@ -4,15 +4,14 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.example.firebase_notifications.R
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
-
-
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d("FCM", "FCM Token: $token")
@@ -25,6 +24,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val title = remoteMessage.notification?.title ?: ""
         val message = remoteMessage.notification?.body ?: ""
+
+        FirebaseAnalytics.getInstance(this).logEvent("notification_received", Bundle().apply {
+            putString("title", title)
+            putString("message", message)
+        })
+
 
         showNotification(title, message)
     }
@@ -42,15 +47,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             channel.description = "Channel for FCM notifications"
             notificationManager.createNotificationChannel(channel)
         }
-
         val notification = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(title)
             .setContentText(message)
             .setAutoCancel(true)
             .build()
-
         notificationManager.notify(0, notification)
     }
 
 }
+
